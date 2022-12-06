@@ -1,0 +1,11 @@
+.out {
+    position: absolute;
+    left: -600px;
+    top: 0
+}
+
+.in {
+    position: absolute;
+    left: 0px;
+    top: 0
+}
