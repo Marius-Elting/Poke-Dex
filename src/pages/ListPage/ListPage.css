@@ -4,7 +4,11 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: aqua;
+
+}
+
+body{
+    background: #b8e8f3;
 }
 .map_div{
     display: flex;
