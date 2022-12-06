@@ -20,10 +20,12 @@ function List() {
                     <div key={index} className='map_div'>
                         <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index + 1}.svg`} alt='POKEimg'></img>
                         <span className='ueber_num_Name'>
+
                         <p className='num_name'> {a.name.toUpperCase()} </p>
                         <p className='num_name'> {("000" + (index + 1)).slice(-4) + "#"} </p>
 
 </span>
+
                     </div>
                 );
             })}
