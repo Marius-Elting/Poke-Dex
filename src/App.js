@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import List from './pages/ListPage/ListPage';
+
 import Header from './components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DetailPage from './pages/DetailPage/DetailPage';
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className="App">
+
       {/* <Header />
       <List /> */}
       <Router>
@@ -29,6 +31,8 @@ function App() {
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>
       </Router>
+
+
     </div>
   );
 }

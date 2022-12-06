@@ -1,11 +1,19 @@
 import { Link } from "react";
 import './Filter.css';
-function Filter({ filter }) {
+
+import Bild from '../img/Vector.png';
+function Filter({filter }) {
     // console.log({ move: "out" });
 
     return (
-        <section>
-            <div>
+        <section> 
+            <span className="bilder">
+                      <img className="pk2" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img> 
+                      <img className="pk3" src={Bild} alt="X Logo"></img>
+                      </span>
+             <h1 className="types">Types</h1>
+            <div className="filter_w">
+              
                 <button onClick={filter("bug")}>Bug</button>
                 <button onClick={filter("dark")}>Dark</button>
                 <button onClick={filter("dragon")}>Dragon</button>
@@ -26,7 +34,7 @@ function Filter({ filter }) {
                 <button onClick={filter("steel")}>steel</button>
                 <button onClick={filter("water")}>water</button>
             </div>
-            <button type="Button">Search</button>
+            <button className="s" type="Button">Search</button>
         </section>
     );
 }

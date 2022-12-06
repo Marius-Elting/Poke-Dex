@@ -16,11 +16,11 @@ function Header(props) {
 
     return (
         <header>
-            <img src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
+            <img className="pk" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
             <nav>
                 <button className="button" onClick={() => { }} type="button">{props.page !== "ListPage" ? "NIX" : <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}</button>
                 <input placeholder="Search Pokemon" Ref={searchRef}></input>
-                <button type="button"></button>
+                <button type="button">Darkmode</button>
                 {filterMenu}
             </nav>
         </header>
