@@ -1,19 +1,23 @@
 
 import React, { useEffect, useState } from 'react';
+import Header from '../../components/Header/Header';
 import "./ListPage.css";
-function List() {
+function List(props) {
     const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
     const [PokeData, setPokeData] = useState();
+
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${searchterm}`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${props.searchterm}`)
             .then(res => res.json())
             .then((res) => {
                 setPokeData(res);
 
             });
-    }, []);
+    }, [props]);
+
     return (
         <div className="main_Div">
+            <Header page={"ListPage"} />
 
             {PokeData?.results?.slice(0, 50).map((a, index) => {
                 return (

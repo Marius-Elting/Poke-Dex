@@ -1,3 +1,10 @@
 .burgerimg {
     height: 40px;
 }
+
+.button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer
+}

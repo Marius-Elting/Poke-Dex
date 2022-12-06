@@ -1,11 +1,8 @@
 import { Link } from "react";
 import './Filter.css';
-function Filter({ }) {
+function Filter({ filter }) {
     // console.log({ move: "out" });
 
-    function filter(a) {
-        // console.log(a);
-    }
     return (
         <section>
             <div>
