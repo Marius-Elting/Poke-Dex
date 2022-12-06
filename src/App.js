@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import List from './pages/ListPage/ListPage';
 
 function App() {
   const [searchterm, setSearchTerm] = useState("?limit=100000&offset=0.");
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-
+<List />
     </div>
   );
 }
