@@ -1,0 +1,38 @@
+.main_Div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: aqua;
+}
+.map_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 15rem;
+  
+    margin: 3rem 1.5rem;
+    background: linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%);
+border-radius: 20px;
+
+}
+.PokeImg{
+    position: relative;
+    height: 15rem;
+    width: 300px;
+    margin-top: -3rem;
+}
+.num_name{
+    font-size: 15pt;
+    margin: .3rem;
+}
+.ueber_num_Name{ 
+   background-color: aliceblue;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    border-radius: 0px 0px 20px 20px;
+}
