@@ -8,10 +8,9 @@ import Filter from "../Filter/Filter";
 
 
 
-function Header() {
+function Header(props) {
     const searchRef = useRef();
     const filterRef = useRef();
-    const [leftButton, setLeftButton] = useState(<img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>);
     const params = useParams();
     const [filterMenu, setFilterMenu] = useState();
 
@@ -19,13 +18,7 @@ function Header() {
         <header>
             <img className="pk" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
             <nav>
-                <button onClick={() => {
-                    setFilterMenu(<Filter />);
-                }}
-                type="button">
-                    {params.id === "Home" ? "NIX" : 
-                    <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}
-                    </button>
+                <button className="button" onClick={() => { }} type="button">{props.page !== "ListPage" ? "NIX" : <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}</button>
                 <input placeholder="Search Pokemon" Ref={searchRef}></input>
                 <button type="button">Darkmode</button>
                 {filterMenu}

@@ -1,12 +1,10 @@
 import { Link } from "react";
 import './Filter.css';
+
 import Bild from '../img/Vector.png';
-function Filter({ }) {
+function Filter({filter }) {
     // console.log({ move: "out" });
 
-    function filter(a) {
-        // console.log(a);
-    }
     return (
         <section> 
             <span className="bilder">
