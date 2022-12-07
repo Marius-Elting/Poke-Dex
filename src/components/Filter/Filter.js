@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 import Bild from '../img/Vector.png';
@@ -11,7 +11,7 @@ function Filter({ filter }) {
         <section>
             <span className="bilder">
                 <img className="pk2" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
-                
+
                 <Link onClick={() => filter("pokemon/?limit=905&offset=0.")} to="/"><img className="pk3" src={Bild} alt="X Logo"></img></Link>
             </span>
             <h1 className="types">Types</h1>
@@ -37,8 +37,16 @@ function Filter({ filter }) {
                 <button onClick={() => filter("type/water")}>water</button>
             </div>
             <Link to="/"><button className="s" type="Button">Search</button></Link>
+
+            {/* <div>
+
+            </div> */}
         </section>
     );
+    // <Link to={"filter/${apivalue}"}
+    //             <List api={api} />
+    //             fetch(`LINK/type/${Params.apivalue}``)
+    // fetch(props.api...Bild.);
 }
 
 export default Filter;
