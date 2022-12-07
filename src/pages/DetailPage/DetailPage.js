@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Carousel from '../../components/PictureCarousel/PictureCarousel';
+import Header from '../../components/Header/Header';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
 
 import './DetailPage.css';
@@ -25,11 +26,13 @@ function DetailPage() {
 
     return (
         <section>
+            <Header />
             <article>
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
                 <h2>POKEDEX ID</h2>
                 <p>{("000" + (pokeData.id)).slice(-3) + "#"}</p>
                 <p></p>
+
                 <h2>POKEMON TYPES</h2>
                 <section>{pokeData?.types.map((item) => {
                     return (
@@ -59,7 +62,7 @@ function DetailPage() {
                 })}</section> */}
             </article>
         </section>
-    )
+    );
 };
 
 export default DetailPage;
