@@ -8,9 +8,41 @@
     border: none;
     cursor: pointer
 }
-.pk{
-    width: 100%;
-height: 300px;
-object-fit: cover;
 
+.pk {
+  display: flex;
+  width: 80%;
+margin: -25% auto;;
+}
+.button_wrapper{
+display: flex;
+
+
+
+}
+header {
+
+    width: 100%;
+    /* border-bottom: solid 1px ; */
+}
+
+nav {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+
+}
+
+nav button {
+    border-radius: .5rem;
+    margin: 0 .1rem;
+    padding: .5rem;
+}
+
+input {
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
 }
