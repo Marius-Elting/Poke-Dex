@@ -46,10 +46,10 @@ function List(props, { filtered }) {
         // setSearchTerm(`pokemon/${searchTerm}`);
         let lenght = searchTerm.length;
         if (props.searchterm.includes("type")) {
-            setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, lenght).toLowerCase() === searchTerm.toLowerCase()));
+            setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, lenght).toLowerCase() === searchTerm.toLowerCase().replace(" ", "-")));
 
         } else if (props.searchterm.includes("pokemon")) {
-            setuseAbleData(PokeData.filter(el => el.name.slice(0, lenght).toLowerCase() === searchTerm.toLowerCase()));
+            setuseAbleData(PokeData.filter(el => el.name.slice(0, lenght).toLowerCase() === searchTerm.toLowerCase().replace(" ", "-")));
 
         }
     }

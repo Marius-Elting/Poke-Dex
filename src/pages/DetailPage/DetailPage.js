@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Carousel from '../../components/PictureCarousel/PictureCarousel';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
+
 import './DetailPage.css';
 
 function DetailPage() {
