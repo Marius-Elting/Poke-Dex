@@ -7,16 +7,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DetailPage from './pages/DetailPage/DetailPage';
 import ListPage from './pages/ListPage/ListPage';
 import Filter from './components/Filter/Filter';
+import PokeElement from './components/PokeElement/Pokelement';
 
 function App() {
-  const [searchterm, setSearchTerm] = useState("?limit=1000&offset=0.");
-  // fetch(`https://pokeapi.co/api/v2/pokemon/${searchterm}`)
-  //   .then(res => res.json())
-  //   .then((res) => {
-  //     console.log(res);
-  //   });
+  const [searchterm, setSearchTerm] = useState("pokemon/?limit=905&offset=0.");
+
   function searchByFilter(filter) {
     setSearchTerm(filter);
+    console.log({ filter });
   }
 
   return (
@@ -27,8 +25,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<ListPage searchterm={searchterm} />} />
-          <Route path="/:id" element={<DetailPage />} />
+          <Route path="/pokemon/:id" element={<DetailPage />} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
+          <Route path="/123dw" element={<PokeElement />} />
+
         </Routes>
       </Router>
 
