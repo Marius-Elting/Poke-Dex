@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Carousel from '../../components/PictureCarousel/PictureCarousel';
+// import { isButtonElement } from 'react-router-dom/dist/dom';
+
 import './DetailPage.css';
 
 function DetailPage() {
@@ -19,11 +22,12 @@ function DetailPage() {
     return (
         <section>
             <article>
-                <img src={pokeData?.sprites?.other.dream_world.front_default}></img>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
                 <p>{("000" + (pokeData.id)).slice(-3) + "#"}</p>
                 <p></p>
-                {/* Pokemon type
+                {/* Pokemon type*/}
                 <p></p>
+                <Carousel data={pokeData} />
             </article>
             <article>
                 {/* Pokemon describtion */}
@@ -35,3 +39,5 @@ function DetailPage() {
 };
 
 export default DetailPage;
+
+
