@@ -15,13 +15,10 @@ function App() {
 
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.") {
     setlinkSearch(filter);
-    console.log({ filter });
   }
 
   function searchPokemon(searchTerm) {
-    console.log(searchTerm);
     setSearchTerm(searchTerm);
-
   }
 
   function reset() {

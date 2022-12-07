@@ -16,13 +16,13 @@ function List(props) {
     console.log(props.searchLink);
 
     useEffect(() => {
-
+        console.log("effekt1");
         setsearchLink(props.searchLink);
     }, [props.searchLink, searchLink]);
 
     useEffect(() => {
-
-
+        console.log("jetzt wird gefeched");
+        console.log(searchLink);
         const controller = new AbortController();
         fetch(`https://pokeapi.co/api/v2/${searchLink}`, { signal: controller.signal })
             .then(res => res.json())
@@ -30,20 +30,20 @@ function List(props) {
                 if (props.searchLink.includes("type")) {
                     setPokeData(res.pokemon);
                     setuseAbleData(res.pokemon);
-
-
+                    console.log("newfetch type");
+                    console.log(res);
                 } else if (props.searchLink.includes("pokemon")) {
                     setPokeData(res.results);
                     setuseAbleData(res.results);
-
-
+                    console.log("newfetch Poke");
+                    console.log(res);
                 }
 
                 return () => {
                     controller.abort();
                 };
             });
-        // 
+        // console.log(PokeData);
     }, [props.searchLink, searchLink,]);
 
 
@@ -55,14 +55,14 @@ function List(props) {
         if (props.searchTerm === "") {
             setuseAbleData(PokeData);
         }
-
+        console.log(props.searchTerm);
         // if (searchTerm === "reset") {
         //     setSearchTerm("pokemon/?limit=905&offset=0.");
         //     // setuseAbleData(PokeData);
         //     return;
         // }
 
-
+        console.log(PokeData);
         // setSearchTerm(`pokemon/${searchTerm}`);
         let lenght = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
@@ -75,14 +75,14 @@ function List(props) {
 
 
     if (PokeData === undefined) {
-
+        console.log("A is undefined");
         return;
     }
-
-
-
+    console.log(PokeData[0].name);
+    console.log(props.searchLink.includes("pokemon"));
+    console.log(PokeData);
     if (PokeData[0].pokemon?.name !== undefined && searchLink.includes("pokemon")) {
-
+        console.log("B is undefined");
         return;
     }
 
@@ -112,6 +112,8 @@ function List(props) {
                 if (i > 905) {
                     return;
                 }
+
+
                 return (
                     <Link to={`/pokemon/${i}`} key={index} className='map_div'>
                         <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`} alt='POKEimg'></img>
@@ -121,10 +123,10 @@ function List(props) {
                         </span>
                     </Link>
                 );
-            })}<span className='showMore'>
-                <button onClick={() => {
-                    setsearchLimit(searchLimit + 20);
-                }}>Show More</button></span>
+            })}
+            <button onClick={() => {
+                setsearchLimit(searchLimit + 20);
+            }}>Show More</button>
         </div>
     );
 }

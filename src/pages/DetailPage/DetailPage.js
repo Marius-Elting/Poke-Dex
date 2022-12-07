@@ -9,6 +9,8 @@ function DetailPage() {
     const [pokeData, setPokeData] = useState();
     const [sonderData, setsonderData] = useState();
     const params = useParams();
+    document.getElementById("searchInput").value = "";
+
 
     useEffect(() => {
         // url ende ist die pokedex id
@@ -16,21 +18,15 @@ function DetailPage() {
             .then(response => response.json())
             .then((pokeData) => {
                 setPokeData(pokeData);
-                console.log(pokeData);
             });
     }, []);
 
     useEffect(() => {
         const controller = new AbortController();
-        console.log("ich bin im useEffect");
         fetch(`https://pokeapi.co/api/v2/${"pokemon/?limit=100000&offset=0."}`, { signal: controller.signal })
             .then(res => res.json())
             .then((res) => {
-
                 setsonderData(res.results);
-
-                console.log(res);
-
                 return () => {
                     controller.abort();
                 };
