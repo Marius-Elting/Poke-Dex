@@ -1,6 +1,6 @@
 // import {  } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import BurgerImg from './burger.png';
 import './Header.css';
@@ -14,12 +14,13 @@ function Header(props) {
     const params = useParams();
     const [filterMenu, setFilterMenu] = useState();
 
+
     return (
         <header>
             <img className="pk" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
             <nav>
-                <button className="button" onClick={() => { }} type="button">{props.page !== "ListPage" ? "NIX" : <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}</button>
-                <input placeholder="Search Pokemon" Ref={searchRef}></input>
+                <Link to="/filter"><button className="button" type="button">{props.page !== "ListPage" ? "NIX" : <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}</button></Link>
+                <input onChange={(e) => props.search(e.target.value)} placeholder="Search Pokemon" Ref={searchRef}></input>
                 <button type="button">Darkmode</button>
                 {filterMenu}
             </nav>
