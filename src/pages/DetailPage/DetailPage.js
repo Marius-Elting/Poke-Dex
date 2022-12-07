@@ -58,20 +58,20 @@ function DetailPage() {
                 <h2>POKEMON TYPES</h2>
                 <section>{pokeData?.types.map((item) => {
                     return (
-                        <div>
-                            <div>{item.type.name}</div>
-                        </div>
+                      
+                            <div id='Q' className={`${item.type.name}`}> {item.type.name.toUpperCase()}</div>
+                      
                     );
                 })}</section>
                 <Carousel data={pokeData} />
             </article>
             <article>
-                <h2> ABILITY</h2>
-                <section>{pokeData?.abilities.map((item) => {
+                <h2 className='types'> ABILITY</h2>
+                <section className='typesXY'>{pokeData?.abilities.map((item) => {
                     return (
-                        <div>
-                            <div>{item.ability.name}</div>
-                        </div>
+                    
+                            <div id='Z'>{item.ability.name.toUpperCase()}</div>
+                    
                     );
                 })}</section>
                 {/* MOVE */}

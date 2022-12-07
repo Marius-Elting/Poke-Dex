@@ -123,10 +123,10 @@ function List(props) {
                         </span>
                     </Link>
                 );
-            })}
+            })}<span className='showMore'>
             <button onClick={() => {
                 setsearchLimit(searchLimit + 20);
-            }}>Show More</button>
+            }}>Show More</button></span>
         </div>
     );
 }
