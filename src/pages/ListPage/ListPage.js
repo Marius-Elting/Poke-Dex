@@ -112,8 +112,6 @@ function List(props) {
                 if (i > 905) {
                     return;
                 }
-
-
                 return (
                     <Link to={`/pokemon/${i}`} key={index} className='map_div'>
                         <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`} alt='POKEimg'></img>
@@ -124,9 +122,9 @@ function List(props) {
                     </Link>
                 );
             })}<span className='showMore'>
-            <button onClick={() => {
-                setsearchLimit(searchLimit + 20);
-            }}>Show More</button></span>
+                <button onClick={() => {
+                    setsearchLimit(searchLimit + 20);
+                }}>Show More</button></span>
         </div>
     );
 }

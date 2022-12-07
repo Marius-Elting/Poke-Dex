@@ -49,29 +49,23 @@ function DetailPage() {
 
     return (
         <section>
-            <article>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
-                <h2>POKEDEX ID</h2>
-                <p>{("000" + (pokeData.id)).slice(-3) + "#"}</p>
+            <article className='imgArticle'>
+                <img alt="PokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
+                <p className='types-idName'>{("000" + (pokeData.id)).slice(-3) + "#"} {(pokeData.name)}</p>
                 <p></p>
-
-                <h2>POKEMON TYPES</h2>
-                <section>{pokeData?.types.map((item) => {
+                <section className='pokeTypes'>{pokeData?.types.map((item) => {
                     return (
-                      
-                            <div id='Q' className={`${item.type.name}`}> {item.type.name.toUpperCase()}</div>
-                      
+                        <div id='Q' className={`${item.type.name}`}> {item.type.name.toUpperCase()}</div>
                     );
                 })}</section>
-                <Carousel data={pokeData} />
             </article>
             <article>
                 <h2 className='types'> ABILITY</h2>
-                <section className='typesXY'>{pokeData?.abilities.map((item) => {
+                <section className='ability'>{pokeData?.abilities.map((item) => {
                     return (
-                    
-                            <div id='Z'>{item.ability.name.toUpperCase()}</div>
-                    
+
+                        <div id='Z'>{item.ability.name.toUpperCase()}</div>
+
                     );
                 })}</section>
                 {/* MOVE */}
@@ -82,6 +76,12 @@ function DetailPage() {
                         </div>
                     );
                 })}</section> */}
+            </article>
+
+            <article className='carroussel-article'>
+                <h2 className='types'>More Pictures</h2>
+                <Carousel data={pokeData} />
+
             </article>
         </section>
     );
