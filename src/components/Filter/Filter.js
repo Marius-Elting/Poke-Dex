@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './Filter.css';
+
 
 import Bild from '../img/Vector.png';
 
@@ -11,6 +11,7 @@ function Filter({ filter }) {
         <section>
             <span className="bilder">
                 <img className="pk2" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
+                
                 <Link onClick={() => filter("pokemon/?limit=905&offset=0.")} to="/"><img className="pk3" src={Bild} alt="X Logo"></img></Link>
             </span>
             <h1 className="types">Types</h1>

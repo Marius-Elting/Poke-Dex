@@ -2,7 +2,7 @@
 import React, { isValidElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-import "./ListPage.css";
+
 
 function List(props, { filtered }) {
     // const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
@@ -58,7 +58,7 @@ function List(props, { filtered }) {
     }
     console.log(searchArray);
     return (
-        <div className="main_Div">
+        <div id='mDiv' className="main_Div">
             <Header page={"ListPage"} search={searchPokemon} />
 
             {useAbleData?.slice(0, 50).map((a, index) => {
