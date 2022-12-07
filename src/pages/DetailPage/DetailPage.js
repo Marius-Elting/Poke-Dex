@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Carousel from '../../components/PictureCarousel/PictureCarousel';
+import Header from '../../components/Header/Header';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
 
 
 function DetailPage() {
-    const [pokeData, setPokeData] = useState([]);
+    const [pokeData, setPokeData] = useState();
 
     const params = useParams();
 
@@ -17,22 +19,51 @@ function DetailPage() {
             });
     }, []);
 
+    if (pokeData === undefined) {
+        return;
+    }
+
     return (
         <section>
+            <Header />
             <article>
-                <img src={pokeData?.sprites?.other.dream_world.front_default}></img>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
+                <h2>POKEDEX ID</h2>
                 <p>{("000" + (pokeData.id)).slice(-3) + "#"}</p>
                 <p></p>
-                {/* Pokemon type
-                <p></p>
+
+                <h2>POKEMON TYPES</h2>
+                <section>{pokeData?.types.map((item) => {
+                    return (
+                        <div>
+                            <div>{item.type.name}</div>
+                        </div>
+                    );
+                })}</section>
+                <Carousel data={pokeData} />
             </article>
             <article>
-                {/* Pokemon describtion */}
-                {/* <h2>ATTACKS AND MOVEMENTS</h2> */}
-                <p></p>
+                <h2> ABILITY</h2>
+                <section>{pokeData?.abilities.map((item) => {
+                    return (
+                        <div>
+                            <div>{item.ability.name}</div>
+                        </div>
+                    );
+                })}</section>
+                {/* MOVE */}
+                {/* <section>{pokeData?.moves?.map((item) => {
+                    return (
+                        <div>
+                            <div>{item.move.name}</div>
+                        </div>
+                    );
+                })}</section> */}
             </article>
         </section>
-    )
+    );
 };
 
 export default DetailPage;
+
+
