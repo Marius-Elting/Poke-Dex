@@ -2,7 +2,7 @@
 import React, { isValidElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-import "./ListPage.css";
+
 
 function List(props, { filtered }) {
     // const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
@@ -74,6 +74,7 @@ function List(props, { filtered }) {
         return;
     }
     return (
+
         <div className="main_Div">
             <Header page={"ListPage"} search={searchPokemon} resetButton={reset} />
 

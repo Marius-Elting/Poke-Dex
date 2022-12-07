@@ -4,7 +4,6 @@ import Carousel from '../../components/PictureCarousel/PictureCarousel';
 import Header from '../../components/Header/Header';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
 
-import './DetailPage.css';
 
 function DetailPage() {
     const [pokeData, setPokeData] = useState();
