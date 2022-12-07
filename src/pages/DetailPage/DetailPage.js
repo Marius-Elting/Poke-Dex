@@ -26,29 +26,27 @@ function DetailPage() {
     return (
         <section>
             <Header />
-            <article>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
-                <h2>POKEDEX ID</h2>
-                <p>{("000" + (pokeData.id)).slice(-3) + "#"}</p>
-                <p></p>
-
-                <h2>POKEMON TYPES</h2>
-                <section>{pokeData?.types.map((item) => {
+            <article className='DPa'>
+                <img className='pokImage' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`} alt="asd"></img>
+                
+                <p className='types' ><strong>{("000" + (pokeData.id)).slice(-3) + "#"}</strong></p>
+                {/* <h2 className='Ptypes'>POKEMON TYPES</h2> */}
+                <section className='typesX'>{pokeData?.types.map((item) => {
                     return (
-                        <div>
-                            <div>{item.type.name}</div>
-                        </div>
+                      
+                            <div id='Q' className={`${item.type.name}`}> {item.type.name.toUpperCase()}</div>
+                      
                     );
                 })}</section>
                 <Carousel data={pokeData} />
             </article>
             <article>
-                <h2> ABILITY</h2>
-                <section>{pokeData?.abilities.map((item) => {
+                <h2 className='types'> ABILITY</h2>
+                <section className='typesXY'>{pokeData?.abilities.map((item) => {
                     return (
-                        <div>
-                            <div>{item.ability.name}</div>
-                        </div>
+                    
+                            <div id='Z'>{item.ability.name.toUpperCase()}</div>
+                    
                     );
                 })}</section>
                 {/* MOVE */}
