@@ -21,7 +21,9 @@ function Header(props) {
             <nav>
                 <Link to="/filter"><button className="button" type="button">{props.page !== "ListPage" ? "NIX" : <img src={BurgerImg} className="burgerimg" alt="burgerMenu" ></img>}</button></Link>
                 <input onChange={(e) => props.search(e.target.value)} placeholder="Search Pokemon" Ref={searchRef}></input>
-                <button type="button">Darkmode</button>
+                <span className="button_wrapper">
+                <button type="button">Reset Filter</button>
+                 <button type="button">Darkmode</button></span>
                 {filterMenu}
             </nav>
         </header>
