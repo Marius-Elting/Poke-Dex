@@ -1,6 +1,6 @@
 // import {  } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import Dpk from '../img/Dpk.png';
 import Lpk from '../img/Lpk-50.png';
@@ -14,7 +14,7 @@ import PokemonLogo from '../img/pokemon-logo-png-1421.png';
 
 
 function Header(props) {
-
+    let navigate = useNavigate();
     const searchRef = useRef();
     // const filterRef = useRef();
     const params = useParams();
@@ -41,12 +41,15 @@ function Header(props) {
 
         }
     };
+
+    const handleOnClick = useCallback(() => navigate('/', { replace: true }), [navigate]);
+
     return (
         <header>
             <img className="pk" src={PokemonLogo} alt="Pokemon Logo"></img>
             <nav>
                 <button className="btn_img_burger button" type="button">{params.pokemon === "pokemon" ? <Link to="/"><img src={backButton} className="burgerimg" alt="burgerMenu" ></img></Link> : <Link to="/filter"> <img src={Burger} className="burgerimg" alt="burgerMenu" ></img></Link>}</button>
-                <input id="searchInput" onChange={(e) => props.search(e.target.value)} placeholder="Search Pokemon" Ref={searchRef}></input>
+                <input id="searchInput" onChange={(e) => { props.search(e.target.value); handleOnClick(); }} placeholder="Search Pokemon" Ref={searchRef}></input>
                 <span className="button_wrapper">
                     <button onClick={() => props.resetButton()}>
                         <Link to="/"><img className="btn_reset" src={Reset} alt="Filter reset"></img></Link>
