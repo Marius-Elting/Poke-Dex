@@ -41,7 +41,6 @@ function Header(props) {
 
         }
     };
-
     const handleOnClick = useCallback(() => navigate('/', { replace: true }), [navigate]);
 
     return (
