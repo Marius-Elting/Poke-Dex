@@ -1,13 +1,11 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import List from './pages/ListPage/ListPage';
 
 import Header from './components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DetailPage from './pages/DetailPage/DetailPage';
 import ListPage from './pages/ListPage/ListPage';
 import Filter from './components/Filter/Filter';
-import PokeElement from './components/PokeElement/Pokelement';
 
 
 function App() {
@@ -19,7 +17,7 @@ function App() {
   const [el, setel] = useState(document.getElementsByClassName('map_div'));
   const [darkMode, setDarkmode] = useState(false);
   const [laoding, setLoading] = useState(false);
-
+  console.log(setel);
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.", target) {
     let buttons = document.querySelectorAll("button");
 
@@ -72,7 +70,7 @@ function App() {
 
     }
     setLoading(false);
-  }, [darkMode, laoding]);
+  }, [darkMode, laoding, el]);
 
   const toggleTheme = () => {
     setDarkmode(!darkMode);

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Carousel from '../../components/PictureCarousel/PictureCarousel';
-import Header from '../../components/Header/Header';
 import german from '../../German JSON.json';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
 
 
 function DetailPage(props) {
     const [pokeData, setPokeData] = useState();
-    const [sonderData, setsonderData] = useState();
+    // const [sonderData, setsonderData] = useState();
     const params = useParams();
     let name;
 
@@ -20,28 +19,28 @@ function DetailPage(props) {
             .then((pokeData) => {
                 setPokeData(pokeData);
             });
-    }, []);
+    },);
 
-    useEffect(() => {
-        document.getElementById("searchInput").value = "";
-        const controller = new AbortController();
-        fetch(`https://pokeapi.co/api/v2/${"pokemon/?limit=100000&offset=0."}`, { signal: controller.signal })
-            .then(res => res.json())
-            .then((res) => {
-                setsonderData(res.results);
-                return () => {
-                    controller.abort();
-                };
-            });
-    }, []);
+    // useEffect(() => {
+    //     document.getElementById("searchInput").value = "";
+    //     const controller = new AbortController();
+    //     fetch(`https://pokeapi.co/api/v2/${"pokemon/?limit=100000&offset=0."}`, { signal: controller.signal })
+    //         .then(res => res.json())
+    //         .then((res) => {
+    //             setsonderData(res.results);
+    //             return () => {
+    //                 controller.abort();
+    //             };
+    //         });
+    // }, []);
 
-    if (pokeData === undefined || sonderData === undefined) {
+    if (pokeData === undefined) {
         return;
     }
-    let lenght = (pokeData.name).length;
-    let array = [];
+    // let lenght = (pokeData.name).length;
+    // let array = [];
 
-    array.push(sonderData.filter(el => el.name.slice(0, lenght).toLowerCase() === pokeData.name.toLowerCase()));
+    // array.push(sonderData.filter(el => el.name.slice(0, lenght).toLowerCase() === pokeData.name.toLowerCase()));
     console.log(props.language);
 
     if (pokeData.id <= 905 && props.language === "German") {

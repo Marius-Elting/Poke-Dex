@@ -34,7 +34,7 @@ const Carousel = (props) => {
         }
     }
 
-    data.map((item) => {
+    data.forEach((item) => {
         checkIfImageExists(item, (exists) => {
             if (exists) {
             } else {

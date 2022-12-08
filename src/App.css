@@ -184,6 +184,7 @@
 .burgerimg {
   height: 40px;
   border-radius: 1rem;
+  margin-right: 32px
 }
 
 .button {
@@ -340,8 +341,8 @@ a {
 }
 
 .pk2 {
-  width: 30%;
-  margin: -2rem 1rem;
+  width: 20%;
+  margin: -1rem 1rem;
 }
 
 .pk3 {
@@ -540,8 +541,8 @@ button {
   }
 
   .pk2 {
-    width: 30%;
-    margin: -5rem 2rem 0 3rem;
+    width: 20%;
+    margin: -3rem 2rem 0 3rem;
   }
 
   .pk3 {

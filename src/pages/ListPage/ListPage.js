@@ -1,14 +1,13 @@
 
-import React, { isValidElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../components/Header/Header';
 import german from '../../German JSON.json';
 
 function List(props) {
     // const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
     const [PokeData, setPokeData] = useState();
     const [searchLink, setsearchLink] = useState(props.searchLink);
-    const [searchTerm, setSearchTerm] = useState(props.searchTerm);
+    // const [searchTerm, setSearchTerm] = useState(props.searchTerm);
     const [searchLimit, setsearchLimit] = useState(50);
     const [useAbleData, setuseAbleData] = useState();
 
@@ -65,7 +64,7 @@ function List(props) {
                 (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
         }
 
-    }, [props.searchTerm]);
+    }, [props.searchTerm, PokeData, props.searchLink]);
 
 
     if (PokeData === undefined) {
@@ -83,29 +82,29 @@ function List(props) {
     return (
 
         <div className="main_Div">
-            {useAbleData?.slice(0, searchLimit).map((a, index) => {
+            {useAbleData?.slice(0, searchLimit).map((item, index) => {
                 let name;
                 let i;
-                let c;
-                {/* console.log(a); */ }
+                /* let c; */
+                /* console.log(a); */
                 if (props.searchLink.includes("type")) {
-                    name = a.pokemon.name;
-                    i = a.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
+                    name = item.pokemon.name;
+                    i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
                     if (i <= 905 && props.language === "German") {
                         name = german[i - 1].name;
                     }
                 } else if (props.searchLink.includes("pokemon")) {
-                    if (a.url === undefined) {
-                        return;
+                    if (item.url === undefined) {
+                        return (console.log("return"));
                     }
-                    name = a.name;
-                    i = a.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
+                    name = item.name;
+                    i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
                     if (i <= 905 && props.language === "German") {
                         name = german[i - 1].name;
                     }
                 }
                 if (i > 905) {
-                    return;
+                    return (console.log("return"));
                 }
 
 

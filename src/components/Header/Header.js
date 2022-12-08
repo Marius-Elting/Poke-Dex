@@ -1,5 +1,5 @@
 // import {  } from "react-router-dom";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useRef, useCallback } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 import Dpk from '../img/Dpk.png';
@@ -7,7 +7,6 @@ import Lpk from '../img/Lpk-50.png';
 import Reset from "../img/reset.png";
 import Dark from "../img/dark.png";
 import Light from "../img/light.png";
-import Filter from "../Filter/Filter";
 import backButton from '../img/back-button.png';
 import PokemonLogo from '../img/PokeLogo.png';
 import ÜbersetzungsPic from '../img/ubersetzenSVG.svg';
@@ -19,9 +18,7 @@ function Header(props) {
     const searchRef = useRef();
     // const filterRef = useRef();
     const params = useParams();
-    const [filterMenu, setFilterMenu] = useState();
-
-    let el = document.getElementsByClassName('map_div');
+    // const [filterMenu, setFilterMenu] = useState();
 
 
     const handleOnClick = useCallback(() => navigate('/', { replace: true }), [navigate]);
@@ -39,7 +36,7 @@ function Header(props) {
                     <button type="button" onClick={() => props.setDarkmode()} ><img className="btn_LD" src={props.dlimg === "Dark" ? Dark : Light} alt="DarkMode"></img></button>
                     <button className="üButton" type="button" onClick={() => props.setLanguage()} ><img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img></button>
                 </span>
-                {filterMenu}
+                {/* {filterMenu} */}
             </nav>
         </header>
     );
