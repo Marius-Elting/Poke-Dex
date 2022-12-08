@@ -10,12 +10,24 @@ import Filter from './components/Filter/Filter';
 import PokeElement from './components/PokeElement/Pokelement';
 
 function App() {
-  const [searchterm, setSearchTerm] = useState("pokemon/?limit=905&offset=0.");
+  const [linkSearch, setlinkSearch] = useState("pokemon/?limit=905&offset=0.");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  function searchByFilter(filter) {
-    setSearchTerm(filter);
-    console.log({ filter });
+  function searchByFilter(filter = "pokemon/?limit=905&offset=0.") {
+    setlinkSearch(filter);
   }
+
+  function searchPokemon(searchTerm) {
+    setSearchTerm(searchTerm);
+  }
+
+  function reset() {
+    setlinkSearch("pokemon/?limit=905&offset=0.");
+    setSearchTerm("");
+    document.getElementById("searchInput").value = "";
+  }
+
+
 
   return (
     <div className="App">
@@ -24,11 +36,9 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<ListPage searchterm={searchterm} />} />
-          <Route path="/pokemon/:id" element={<DetailPage />} />
+          <Route path="/" element={<><Header filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/:pokemon/:id" element={<><Header search={searchPokemon} resetButton={reset} /><DetailPage /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
-          <Route path="/123dw" element={<PokeElement />} />
-
         </Routes>
       </Router>
 
