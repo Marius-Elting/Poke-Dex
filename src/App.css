@@ -3,6 +3,18 @@
   padding: 0;
 }
 
+.btn_LL {
+position: absolute;
+  top: 0px;
+  right:0px;
+  margin:1rem;
+}
+.btnN{
+  width: 5rem;
+  height: 5rem;
+}
+
+
 /*! DEtailPage-----------------------*/
 .typesX {
   display: flex;
@@ -172,7 +184,7 @@
 }
 
 .btn_LD {
-  height: 0px;
+  height: 40px;
 
   background-color: transparent;
   outline: none;
@@ -516,6 +528,17 @@ button {
 @media only screen and (min-width: 900px) {
 
 
+  .btn_LL {
+    position: absolute;
+      top: 0px;
+      right: 0px;
+      margin: 1rem;
+    }
+    .btnN{
+      width: 5rem;
+      height: 5rem;
+    }
+    
   /*!FILTER */
   .bilder {
     display: flex;
@@ -786,6 +809,17 @@ button {
 @media only screen and (max-width: 400px) {
 
 
+  .btn_LL {
+    position: absolute;
+      top: 0px;
+      right: 0px;
+      margin: 5%;
+    }
+    .btnN{
+      width: 5rem;
+      height: 5rem;
+    }
+    
   nav {
     flex-direction: column;
     justify-content: space-between;

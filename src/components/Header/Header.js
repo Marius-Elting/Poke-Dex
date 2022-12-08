@@ -28,16 +28,26 @@ function Header(props) {
 
     return (
         <header>
+    
             <Link to="/"> <img className="pk" src={PokemonLogo} alt="Pokemon Logo"></img></Link>
+         
             <nav>
                 <button className="btn_img_burger button" type="button">{params.pokemon === "pokemon" ? <Link to="/"><img src={backButton} className="burgerimg" alt="burgerMenu" ></img></Link> : <Link to="/filter"> <img src={props.burgerimg === "Dpk" ? Dpk : Lpk} className="burgerimg" alt="burgerMenu" ></img></Link>}</button>
                 <input id="searchInput" onChange={(e) => { props.search(e.target.value); handleOnClick(); }} placeholder="Search Pokemon" Ref={searchRef}></input>
                 <span className="button_wrapper">
-                    <button onClick={() => props.resetButton()}>
-                        <Link to="/"><img className="btn_reset" src={Reset} alt="Filter reset"></img></Link>
+                    <button  className="btnN" onClick={() => props.resetButton()}>
+                        <Link to="/">
+                            <img className="btn_reset" src={Reset} alt="Filter reset"></img>
+                            </Link>
                     </button>
-                    <button type="button" onClick={() => props.setDarkmode()} ><img className="btn_LD" src={props.dlimg === "Dark" ? Dark : Light} alt="DarkMode"></img></button>
-                    <button type="button" onClick={() => props.setLanguage()} ><img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img></button>
+                    <button type="button"  className="btnN" onClick={() => props.setDarkmode()} >
+                        <img className="btn_LD" src={props.dlimg === "Dark" ? Dark : Light} alt="DarkMode">
+
+                        </img>
+                    </button>
+                    <button className="btn_LL" type="button" onClick={() => props.setLanguage()} >
+                        <img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img>
+                        </button>
                 </span>
                 {filterMenu}
             </nav>
