@@ -2,7 +2,7 @@
 import React, { isValidElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
-
+import german from '../../German JSON.json';
 
 function List(props) {
     // const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
@@ -12,17 +12,13 @@ function List(props) {
     const [searchLimit, setsearchLimit] = useState(50);
     const [useAbleData, setuseAbleData] = useState();
 
-    console.log(searchLink);
-    console.log(props.searchLink);
+    props.loading();
 
     useEffect(() => {
-        console.log("effekt1");
         setsearchLink(props.searchLink);
     }, [props.searchLink, searchLink]);
 
     useEffect(() => {
-        console.log("jetzt wird gefeched");
-        console.log(searchLink);
         const controller = new AbortController();
         fetch(`https://pokeapi.co/api/v2/${searchLink}`, { signal: controller.signal })
             .then(res => res.json())
@@ -30,13 +26,9 @@ function List(props) {
                 if (props.searchLink.includes("type")) {
                     setPokeData(res.pokemon);
                     setuseAbleData(res.pokemon);
-                    console.log("newfetch type");
-                    console.log(res);
                 } else if (props.searchLink.includes("pokemon")) {
                     setPokeData(res.results);
                     setuseAbleData(res.results);
-                    console.log("newfetch Poke");
-                    console.log(res);
                 }
 
                 return () => {
@@ -55,34 +47,28 @@ function List(props) {
         if (props.searchTerm === "") {
             setuseAbleData(PokeData);
         }
-        console.log(props.searchTerm);
         // if (searchTerm === "reset") {
         //     setSearchTerm("pokemon/?limit=905&offset=0.");
         //     // setuseAbleData(PokeData);
         //     return;
         // }
 
-        console.log(PokeData);
         // setSearchTerm(`pokemon/${searchTerm}`);
-        let lenght = (props.searchTerm).length;
+        let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
-            setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, lenght).toLowerCase() === (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
+            setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, length).toLowerCase() === (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
 
         } else if (props.searchLink.includes("pokemon")) {
-            setuseAbleData(PokeData.filter(el => el.name.slice(0, lenght).toLowerCase() === (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
+            setuseAbleData(PokeData.filter(el => el.name.slice(0, length).toLowerCase() === (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
         }
     }, [props.searchTerm]);
 
 
     if (PokeData === undefined) {
-        console.log("A is undefined");
         return;
     }
-    console.log(PokeData[0].name);
-    console.log(props.searchLink.includes("pokemon"));
-    console.log(PokeData);
+
     if (PokeData[0].pokemon?.name !== undefined && searchLink.includes("pokemon")) {
-        console.log("B is undefined");
         return;
     }
 
@@ -101,13 +87,18 @@ function List(props) {
                 if (props.searchLink.includes("type")) {
                     name = a.pokemon.name;
                     i = a.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
+                    if (i <= 905 && props.language === "German") {
+                        name = german[i - 1].name;
+                    }
                 } else if (props.searchLink.includes("pokemon")) {
                     if (a.url === undefined) {
                         return;
                     }
                     name = a.name;
                     i = a.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-
+                    if (i <= 905 && props.language === "German") {
+                        name = german[i - 1].name;
+                    }
                 }
                 if (i > 905) {
                     return;
