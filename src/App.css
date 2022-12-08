@@ -700,6 +700,7 @@ button {
 
   }
 
+
   .btn_img_burger {
     width: min-content;
     display: flex;
@@ -772,4 +773,13 @@ button {
 
 
 
+}
+
+.darkM {
+  /* element.style.background="linear-gradient(52.41deg, #BFDFFF 4.87%, #001224 94.37%)"; */
+  background: linear-gradient(52.41deg, #BFDFFF 4.87%, #001224 94.37%);
+}
+
+.lightM {
+  background: linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%);
 }

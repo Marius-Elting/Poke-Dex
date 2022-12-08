@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import List from './pages/ListPage/ListPage';
 
 import Header from './components/Header/Header';
@@ -9,9 +9,16 @@ import ListPage from './pages/ListPage/ListPage';
 import Filter from './components/Filter/Filter';
 import PokeElement from './components/PokeElement/Pokelement';
 
+
 function App() {
   const [linkSearch, setlinkSearch] = useState("pokemon/?limit=905&offset=0.");
   const [searchTerm, setSearchTerm] = useState("");
+  const [Lang, setLang] = useState("English");
+  const [DL, setDL] = useState("Light");
+  const [Burger, setBurger] = useState("Lpk");
+  const [el, setel] = useState(document.getElementsByClassName('map_div'));
+  const [darkMode, setDarkmode] = useState(false);
+  const [laoding, setLoading] = useState(false);
 
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.") {
     setlinkSearch(filter);
@@ -27,7 +34,46 @@ function App() {
     document.getElementById("searchInput").value = "";
   }
 
+  function selectLang() {
+    if (Lang === "German") {
+      setLang("English");
+    }
+    if (Lang === "English") {
+      setLang("German");
+    }
+  }
 
+  useEffect((load) => {
+    if (darkMode) {
+      document.body.className = "dark";
+      Array.from(el).forEach((element) => {
+        // element.style.background = "linear-gradient(52.41deg, #BFDFFF 4.87%, #001224 94.37%)";
+        element.classList.add("darkM");
+        element.classList.remove("LightM");
+      });
+      setDL("Dark");
+      setBurger("Dpk");
+    } else {
+      setDL("Light");
+      setBurger("Lpk");
+      document.body.className = "light";
+      Array.from(el).forEach((element) => {
+        // element.style.background = "linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%)";
+        element.classList.remove("darkM");
+        element.classList.add("LightM");
+      });
+
+    }
+    setLoading(false);
+  }, [darkMode, laoding]);
+
+  const toggleTheme = () => {
+    setDarkmode(!darkMode);
+  };
+
+  const toggleLoad = () => {
+    setLoading(true);
+  };
 
   return (
     <div className="App">
@@ -36,8 +82,8 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<><Header filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage searchTerm={searchTerm} searchLink={linkSearch} /></>} />
-          <Route path="/:pokemon/:id" element={<><Header search={searchPokemon} resetButton={reset} /><DetailPage /></>} />
+          <Route path="/" element={<><Header setDarkmode={toggleTheme} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/:pokemon/:id" element={<><Header setDarkmode={toggleTheme} burgerimg={Burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>
       </Router>

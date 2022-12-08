@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Carousel from '../../components/PictureCarousel/PictureCarousel';
 import Header from '../../components/Header/Header';
+import german from '../../German JSON.json';
 // import { isButtonElement } from 'react-router-dom/dist/dom';
 
 
-function DetailPage() {
+function DetailPage(props) {
     const [pokeData, setPokeData] = useState();
     const [sonderData, setsonderData] = useState();
     const params = useParams();
     document.getElementById("searchInput").value = "";
+    let name;
 
 
     useEffect(() => {
@@ -40,14 +42,20 @@ function DetailPage() {
     let array = [];
 
     array.push(sonderData.filter(el => el.name.slice(0, lenght).toLowerCase() === pokeData.name.toLowerCase()));
+    console.log(props.language);
 
-
+    if (pokeData.id <= 905 && props.language === "German") {
+        console.log(pokeData.id);
+        name = german[pokeData.id - 1].name;
+    } else if (pokeData.id <= 905 && props.language === "English") {
+        name = pokeData.name;
+    }
 
     return (
         <section>
             <article className='imgArticle'>
                 <img alt="PokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
-                <p className='types-idName'>{("000" + (pokeData.id)).slice(-3) + "#"} {(pokeData.name)}</p>
+                <p className='types-idName'>{("000" + (pokeData.id)).slice(-3) + "#"} {name}</p>
                 <p></p>
                 <section className='pokeTypes'>{pokeData?.types.map((item) => {
                     return (
