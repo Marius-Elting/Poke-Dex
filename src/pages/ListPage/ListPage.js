@@ -115,9 +115,11 @@ function List(props) {
                     </Link>
                 );
             })}
-            <button onClick={() => {
-                setsearchLimit(searchLimit + 20);
-            }}>Show More</button>
+            <div className='showMore'>
+                <button onClick={() => {
+                    setsearchLimit(searchLimit + 20);
+                }}>Show More</button>
+            </div>
         </div>
     );
 }

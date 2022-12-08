@@ -172,7 +172,7 @@
 }
 
 .btn_LD {
-  height: 40px;
+  height: 0px;
 
   background-color: transparent;
   outline: none;
@@ -700,7 +700,6 @@ button {
 
   }
 
-
   .btn_img_burger {
     width: min-content;
     display: flex;
@@ -727,7 +726,7 @@ button {
   .button_wrapper {
     display: flex;
     justify-content: space-between;
-
+    margin: 0 2rem;
 
   }
 
@@ -782,4 +781,28 @@ button {
 
 .lightM {
   background: linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%);
+}
+
+@media only screen and (max-width: 400px) {
+
+
+  nav {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .button_wrapper {
+    justify-content: space-between;
+    margin: 0rem 3rem;
+
+  }
+
+
+
+
+  .filter_w {
+    display: grid;
+    grid-template-columns: 1fr;
+
+  }
 }
