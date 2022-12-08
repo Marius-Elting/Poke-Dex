@@ -41,7 +41,7 @@ function DetailPage(props) {
     // let array = [];
 
     // array.push(sonderData.filter(el => el.name.slice(0, lenght).toLowerCase() === pokeData.name.toLowerCase()));
-    console.log(props.language);
+    // console.log(props.language);
 
     if (pokeData.id <= 905 && props.language === "German") {
         console.log(pokeData.id);

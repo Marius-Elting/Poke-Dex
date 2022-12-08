@@ -36,7 +36,6 @@ function Header(props) {
                     <button type="button" onClick={() => props.setDarkmode()} ><img className="btn_LD" src={props.dlimg === "Dark" ? Dark : Light} alt="DarkMode"></img></button>
                     <button className="üButton" type="button" onClick={() => props.setLanguage()} ><img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img></button>
                 </span>
-                {/* {filterMenu} */}
             </nav>
         </header>
     );

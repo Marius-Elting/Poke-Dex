@@ -17,14 +17,13 @@ function App() {
   const [el, setel] = useState(document.getElementsByClassName('map_div'));
   const [darkMode, setDarkmode] = useState(false);
   const [laoding, setLoading] = useState(false);
-  console.log(setel);
+
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.", target) {
     let buttons = document.querySelectorAll("button");
 
     Array.from(buttons).forEach((but) => {
       but.classList.remove("selected");
     });
-    console.log(target);
     target.classList.add("selected");
     setlinkSearch(filter);
   }

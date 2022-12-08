@@ -34,7 +34,6 @@ function List(props) {
                     controller.abort();
                 };
             });
-        // console.log(PokeData);
     }, [props.searchLink, searchLink,]);
 
 
@@ -56,8 +55,8 @@ function List(props) {
         // }
 
         // setSearchTerm(`pokemon/${searchTerm}`);
-        let length = (props.searchTerm).length;
 
+        let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
             setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, length).toLowerCase() ===
                 (props.searchTerm).toLowerCase().replaceAll(" ", "-")));

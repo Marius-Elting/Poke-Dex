@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
-
-
 import Bild from '../img/Vector.png';
 
-
 function Filter({ filter }) {
-    // console.log({ move: "out" });
-    console.log("load");
-    let buttons = document.querySelectorAll("button");
-    console.log(buttons);
-
-
 
     return (
         <section>
@@ -42,16 +33,9 @@ function Filter({ filter }) {
                 <button onClick={(e) => { filter("type/water", e.target); }}>water</button>
             </div>
             <Link to="/"><button className="s" type="Button">Search</button></Link>
-
-            {/* <div>
-
-            </div> */}
         </section>
     );
-    // <Link to={"filter/${apivalue}"}
-    //             <List api={api} />
-    //             fetch(`LINK/type/${Params.apivalue}``)
-    // fetch(props.api...Bild.);
+
 }
 
 export default Filter;

@@ -4,6 +4,7 @@ import './PictureCarousel.css';
 const Carousel = (props) => {
     const data = ["a", `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.data.id}.png`, `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${props.data.id}.png`, `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.data.id}.png`, `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${props.data.id}.png`];
     const [currentIndex, setCurrentIndex] = useState(0);
+
     const carouselInfiniteScroll = () => {
         if (currentIndex === data.length - 1) {
             return setCurrentIndex(0);
@@ -13,7 +14,6 @@ const Carousel = (props) => {
 
     useEffect(() => {
         const interval = setInterval(() => { carouselInfiniteScroll(); }, 3000);
-        // clean up function
         return () => clearInterval(interval);
     });
 
@@ -28,11 +28,13 @@ const Carousel = (props) => {
             img.onload = () => {
                 callback(true);
             };
+
             img.onerror = () => {
                 callback(false);
             };
         }
     }
+
 
     data.forEach((item) => {
         checkIfImageExists(item, (exists) => {
@@ -57,7 +59,6 @@ const Carousel = (props) => {
                         e.target.style.display = "none";
                         let i = data.indexOf(item);
                         data.splice(i, 1);
-                        console.log(data);
                     }}></img>;
             })}
         </div>
