@@ -46,6 +46,9 @@ function List(props) {
         if (props.searchTerm === "") {
             setuseAbleData(PokeData);
         }
+        if (PokeData[0].pokemon?.name !== undefined && props.searchLink.includes("pokemon")) {
+            return;
+        }
         // if (searchTerm === "reset") {
         //     setSearchTerm("pokemon/?limit=905&offset=0.");
         //     // setuseAbleData(PokeData);
