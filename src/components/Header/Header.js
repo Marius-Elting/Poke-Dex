@@ -24,7 +24,6 @@ function Header(props) {
     let el = document.getElementsByClassName('map_div');
 
 
-
     const handleOnClick = useCallback(() => navigate('/', { replace: true }), [navigate]);
 
     return (
