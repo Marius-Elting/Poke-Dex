@@ -28,13 +28,11 @@ const Carousel = (props) => {
             img.onload = () => {
                 callback(true);
             };
-
             img.onerror = () => {
                 callback(false);
             };
         }
     }
-
 
     data.map((item) => {
         checkIfImageExists(item, (exists) => {
@@ -42,7 +40,6 @@ const Carousel = (props) => {
             } else {
                 let i = data.indexOf(item);
                 data.splice(i, 1);
-                console.log("hallohalli");
             }
         });
     });

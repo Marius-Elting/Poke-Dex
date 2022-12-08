@@ -7,6 +7,11 @@ import Bild from '../img/Vector.png';
 function Filter({ filter }) {
     // console.log({ move: "out" });
     console.log("load");
+    let buttons = document.querySelectorAll("button");
+    console.log(buttons);
+
+
+
     return (
         <section>
             <span className="bilder">
@@ -16,25 +21,25 @@ function Filter({ filter }) {
             </span>
             <h1 className="types">Types</h1>
             <div className="filter_w">
-                <button onClick={() => filter("type/bug")}>Bug</button>
-                <button onClick={() => filter("type/dark")}>Dark</button>
-                <button onClick={() => filter("type/dragon")}>Dragon</button>
-                <button onClick={() => filter("type/electric")}>Electric</button>
-                <button onClick={() => filter("type/fairy")}>Fairy</button>
-                <button onClick={() => filter("type/fighting")}>Fighting</button>
-                <button onClick={() => filter("type/fire")}>Fire</button>
-                <button onClick={() => filter("type/flying")}>Flying</button>
-                <button onClick={() => filter("type/ghost")}>Ghost</button>
-                <button onClick={() => filter("type/grass")}>Grass</button>
-                <button onClick={() => filter("type/ground")}>Ground</button>
-                <button onClick={() => filter("type/ice")}>Ice</button>
-                <button onClick={() => filter("type/normal")}>Normal</button>
-                <button onClick={() => filter("type/plant")}>Plant</button>
-                <button onClick={() => filter("type/poison")}>poison</button>
-                <button onClick={() => filter("type/psychic")}>psychic</button>
-                <button onClick={() => filter("type/rock")}>rock</button>
-                <button onClick={() => filter("type/steel")}>steel</button>
-                <button onClick={() => filter("type/water")}>water</button>
+                <button onClick={(e) => { filter("type/bug", e.target); }}>Bug</button>
+                <button onClick={(e) => { filter("type/dark", e.target); }}>Dark</button>
+                <button onClick={(e) => { filter("type/dragon", e.target); }}>Dragon</button>
+                <button onClick={(e) => { filter("type/electric", e.target); }}>Electric</button>
+                <button onClick={(e) => { filter("type/fairy", e.target); }}>Fairy</button>
+                <button onClick={(e) => { filter("type/fighting", e.target); }}>Fighting</button>
+                <button onClick={(e) => { filter("type/fire", e.target); }}>Fire</button>
+                <button onClick={(e) => { filter("type/flying", e.target); }}>Flying</button>
+                <button onClick={(e) => { filter("type/ghost", e.target); }}>Ghost</button>
+                <button onClick={(e) => { filter("type/grass", e.target); }}>Grass</button>
+                <button onClick={(e) => { filter("type/ground", e.target); }}>Ground</button>
+                <button onClick={(e) => { filter("type/ice", e.target); }}>Ice</button>
+                <button onClick={(e) => { filter("type/normal", e.target); }}>Normal</button>
+                <button onClick={(e) => { filter("type/plant", e.target); }}>Plant</button>
+                <button onClick={(e) => { filter("type/poison", e.target); }}>poison</button>
+                <button onClick={(e) => { filter("type/psychic", e.target); }}>psychic</button>
+                <button onClick={(e) => { filter("type/rock", e.target); }}>rock</button>
+                <button onClick={(e) => { filter("type/steel", e.target); }}>steel</button>
+                <button onClick={(e) => { filter("type/water", e.target); }}>water</button>
             </div>
             <Link to="/"><button className="s" type="Button">Search</button></Link>
 

@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /*! DEtailPage-----------------------*/
@@ -163,7 +164,7 @@
 }
 
 .btn_reset {
-  height: 40px;
+  height: 30px;
 
   background-color: transparent;
   outline: none;
@@ -172,7 +173,7 @@
 }
 
 .btn_LD {
-  height: 0px;
+  height: 40px;
 
   background-color: transparent;
   outline: none;
@@ -192,10 +193,12 @@
   cursor: pointer
 }
 
-.pk {
-  display: flex;
+.Logo {
   width: 80%;
-  margin: -5rem auto;
+  margin: 30px;
+  position: relative;
+  left: 0;
+  top: 0;
 }
 
 .button_wrapper {
@@ -445,6 +448,11 @@ a {
 
 }
 
+.filter_w .selected {
+  border: 5px solid #2868fe;
+  margin: 1.8rem
+}
+
 .filter_w {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -482,6 +490,7 @@ a {
   text-align: center;
   color: #FFCB05;
   -webkit-text-stroke: 5px #2C72B8;
+  font-weight: 900px;
 }
 
 .pokeTypes {
@@ -513,8 +522,12 @@ button {
 /*?------------------------------------------------------ */
 /*!------------------------------------------------------ */
 /*TODO------------------------------------------------------ */
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 970px) {
 
+  .filter_w .filter_w .selected {
+    border: 5px solid #2868fe;
+    margin: .4rem
+  }
 
   /*!FILTER */
   .bilder {
@@ -700,6 +713,11 @@ button {
 
   }
 
+  .filter_w .selected {
+    border: 5px solid #2868fe;
+    margin: .4rem
+  }
+
   .btn_img_burger {
     width: min-content;
     display: flex;
@@ -714,13 +732,20 @@ button {
     width: min-content;
   }
 
-  .pk {
+  .LogoLink {
+    display: inline-block;
+
+    width: 25%;
+
+  }
+
+  .Logo {
     display: flex;
     align-self: flex-start;
     flex-direction: row;
-    width: 25%;
+    width: 100%;
     height: 25%;
-    margin: -3.5rem 0 -7rem 0.5rem;
+    margin: 10px 10px -50px 10px;
   }
 
   .button_wrapper {
@@ -783,8 +808,12 @@ button {
   background: linear-gradient(52.41deg, #FFE1C6 4.87%, #FFCB05 94.37%);
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 570px) {
 
+  .filter_w .selected {
+    border: 5px solid #2868fe;
+    margin: 1.8rem
+  }
 
   nav {
     flex-direction: column;
@@ -805,4 +834,18 @@ button {
     grid-template-columns: 1fr;
 
   }
+
 }
+
+.üButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+
+}
+
+/* .filter_w .selected {
+  border: 5px solid #2868fe;
+  margin: 1.8rem
+} */

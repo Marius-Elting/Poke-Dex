@@ -9,8 +9,8 @@ import Dark from "../img/dark.png";
 import Light from "../img/light.png";
 import Filter from "../Filter/Filter";
 import backButton from '../img/back-button.png';
-import PokemonLogo from '../img/pokemon-logo-png-1421.png';
-import ÜbersetzungsPic from '../img/ubersetzen.png';
+import PokemonLogo from '../img/PokeLogo.png';
+import ÜbersetzungsPic from '../img/ubersetzenSVG.svg';
 
 
 
@@ -28,7 +28,7 @@ function Header(props) {
 
     return (
         <header>
-            <Link to="/"> <img className="pk" src={PokemonLogo} alt="Pokemon Logo"></img></Link>
+            <Link className="LogoLink" to="/"> <img className="Logo" src={PokemonLogo} alt="Pokemon Logo"></img></Link>
             <nav>
                 <button className="btn_img_burger button" type="button">{params.pokemon === "pokemon" ? <Link to="/"><img src={backButton} className="burgerimg" alt="burgerMenu" ></img></Link> : <Link to="/filter"> <img src={props.burgerimg === "Dpk" ? Dpk : Lpk} className="burgerimg" alt="burgerMenu" ></img></Link>}</button>
                 <input id="searchInput" onChange={(e) => { props.search(e.target.value); handleOnClick(); }} placeholder="Search Pokemon" Ref={searchRef}></input>
@@ -37,7 +37,7 @@ function Header(props) {
                         <Link to="/"><img className="btn_reset" src={Reset} alt="Filter reset"></img></Link>
                     </button>
                     <button type="button" onClick={() => props.setDarkmode()} ><img className="btn_LD" src={props.dlimg === "Dark" ? Dark : Light} alt="DarkMode"></img></button>
-                    <button type="button" onClick={() => props.setLanguage()} ><img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img></button>
+                    <button className="üButton" type="button" onClick={() => props.setLanguage()} ><img className="btn_LD" src={ÜbersetzungsPic} alt="DarkMode"></img></button>
                 </span>
                 {filterMenu}
             </nav>

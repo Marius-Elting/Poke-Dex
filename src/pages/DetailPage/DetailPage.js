@@ -10,7 +10,6 @@ function DetailPage(props) {
     const [pokeData, setPokeData] = useState();
     const [sonderData, setsonderData] = useState();
     const params = useParams();
-    document.getElementById("searchInput").value = "";
     let name;
 
 
@@ -24,6 +23,7 @@ function DetailPage(props) {
     }, []);
 
     useEffect(() => {
+        document.getElementById("searchInput").value = "";
         const controller = new AbortController();
         fetch(`https://pokeapi.co/api/v2/${"pokemon/?limit=100000&offset=0."}`, { signal: controller.signal })
             .then(res => res.json())
@@ -55,7 +55,7 @@ function DetailPage(props) {
         <section>
             <article className='imgArticle'>
                 <img alt="PokeImg" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}></img>
-                <p className='types-idName'>{("000" + (pokeData.id)).slice(-3) + "#"} {name}</p>
+                <h1 className='types-idName'>{("000" + (pokeData.id)).slice(-3) + "#"} {name}</h1>
                 <p></p>
                 <section className='pokeTypes'>{pokeData?.types.map((item) => {
                     return (
