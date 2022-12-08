@@ -19,7 +19,7 @@ function DetailPage(props) {
             .then((pokeData) => {
                 setPokeData(pokeData);
             });
-    },);
+    }, []);
 
     // useEffect(() => {
     //     document.getElementById("searchInput").value = "";
