@@ -25,7 +25,7 @@ function Header(props) {
 
     return (
         <header>
-            <Link className="LogoLink" to="/"> <img className="Logo" src={PokemonLogo} alt="Pokemon Logo"></img></Link>
+            <Link onClick={() => window.reload()} className="LogoLink" to="/"> <img className="Logo" src={PokemonLogo} alt="Pokemon Logo"></img></Link>
             <nav>
                 <button className="btn_img_burger button" type="button">{params.pokemon === "pokemon" ? <Link to="/"><img src={backButton} className="burgerimg" alt="burgerMenu" ></img></Link> : <Link to="/filter"> <img src={props.burgerimg === "Dpk" ? Dpk : Lpk} className="burgerimg" alt="burgerMenu" ></img></Link>}</button>
                 <input id="searchInput" onChange={(e) => { props.search(e.target.value); handleOnClick(); }} placeholder="Search Pokemon" Ref={searchRef}></input>

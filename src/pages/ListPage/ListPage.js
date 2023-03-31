@@ -55,20 +55,29 @@ function List(props) {
         // }
 
         // setSearchTerm(`pokemon/${searchTerm}`);
-
+        console.log("test")
         let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
-            setuseAbleData(PokeData.filter(el => el.pokemon.name.slice(0, length).toLowerCase() ===
-                (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
+            setuseAbleData(PokeData.filter((el, i) =>
+                el.pokemon.name.slice(0, length).toLowerCase() ===
+                (props.searchTerm).toLowerCase().replaceAll(" ", "-") ||
+                german[Number(el.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "")) - 1]?.name.slice(0, length).toLowerCase() ===
+                (props.searchTerm).toLowerCase().replaceAll(" ", "-")
+
+            ));
 
         } else if (props.searchLink.includes("pokemon")) {
-            setuseAbleData(PokeData.filter(el => el.name.slice(0, length).toLowerCase() ===
+            setuseAbleData(PokeData.filter((el, i) =>
+                el.name.slice(0, length).toLowerCase() ===
+                (props.searchTerm).toLowerCase().replaceAll(" ", "-") ||
+                german[i].name.slice(0, length).toLowerCase() ===
                 (props.searchTerm).toLowerCase().replaceAll(" ", "-")));
         }
 
     }, [props.searchTerm, PokeData, props.searchLink]);
 
-
+    console.log(useAbleData)
+    console.log(german)
     if (PokeData === undefined) {
         return;
     }
@@ -77,18 +86,12 @@ function List(props) {
         return;
     }
 
-    // if (PokeData[0].name === undefined) {
-
-    // }
-
     return (
 
         <div className="main_Div">
             {useAbleData?.slice(0, searchLimit).map((item, index) => {
                 let name;
                 let i;
-                /* let c; */
-                /* console.log(a); */
                 if (props.searchLink.includes("type")) {
                     name = item.pokemon.name;
                     i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
@@ -108,8 +111,6 @@ function List(props) {
                 if (i > 905) {
                     return (console.log("return"));
                 }
-
-
                 return (
                     <Link to={`/pokemon/${i}`} key={index} className='map_div'>
                         <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`} alt='POKEimg'></img>
@@ -120,11 +121,14 @@ function List(props) {
                     </Link>
                 );
             })}
-            <div className='showMore'>
-                <button onClick={() => {
-                    setsearchLimit(searchLimit + 20);
-                }}>Show More</button>
-            </div>
+            {useAbleData.length > searchLimit &&
+                <div className='showMore'>
+                    <button onClick={() => {
+                        setsearchLimit(searchLimit + 20);
+                    }}>Show More</button>
+                </div>
+            }
+
         </div>
     );
 }
