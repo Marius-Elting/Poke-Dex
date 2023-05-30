@@ -14,11 +14,12 @@ function App() {
   const [Lang, setLang] = useState("English");
   const [DL, setDL] = useState("Light");
   const [burger, setBurger] = useState("Lpk");
-  const [el, setel] = useState(document.getElementsByClassName('map_div'));
   const [darkMode, setDarkmode] = useState(false);
-  const [laoding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.", target) {
+    console.log("Filter triggered")
+    console.log(filter)
     let buttons = document.querySelectorAll("button");
 
     Array.from(buttons).forEach((but) => {
@@ -27,7 +28,7 @@ function App() {
     target.classList.add("selected");
     setlinkSearch(filter);
   }
-
+  console.log(linkSearch)
   function searchPokemon(searchTerm) {
     setSearchTerm(searchTerm);
   }
@@ -48,6 +49,7 @@ function App() {
   }
 
   useEffect(() => {
+    const el = document.getElementsByClassName('map_div')
     if (darkMode) {
       document.body.className = "dark";
       Array.from(el).forEach((element) => {
@@ -69,14 +71,15 @@ function App() {
 
     }
     setLoading(false);
-  }, [darkMode, laoding, el]);
+  }, [darkMode, loading]);
 
   const toggleTheme = () => {
-    setDarkmode(!darkMode);
+    setDarkmode(prev => !prev);
   };
 
   const toggleLoad = () => {
-    setLoading(true);
+    // setLoading(true);
+    console.log("loading toggled")
   };
 
   return (
@@ -86,7 +89,7 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} darkmode={darkMode} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
           <Route path="/:pokemon/:id" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>

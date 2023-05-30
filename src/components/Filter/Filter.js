@@ -8,7 +8,8 @@ function Filter({ filter }) {
             <span className="bilder">
                 <img className="pk2" src={"https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"} alt="Pokemon Logo"></img>
 
-                <Link onClick={() => filter("pokemon/?limit=905&offset=0.")} to="/"><img className="pk3" src={Bild} alt="X Logo"></img></Link>
+                <button className="filterCloseBtn" onClick={(e) => filter("pokemon/?limit=905&offset=0.", e.target)} > <Link to="/" ><img className="pk3" src={Bild} alt="X Logo"></img></Link></button>
+                {/* <Link to="/" onClick={() => filter("pokemon/?limit=905&offset=0.")}><img className="pk3" src={Bild} alt="X Logo"></img></Link> */}
             </span>
             <h1 className="types">Types</h1>
             <div className="filter_w">

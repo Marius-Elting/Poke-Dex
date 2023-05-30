@@ -29,12 +29,8 @@ function List(props) {
 
                     res.pokemon.forEach((item, index) => {
                         let i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-
-                        if (i > 905) {
-                            return (console.log("return > 905"));
-                        } else {
-                            cleanedData.push(item)
-                        }
+                        if (i > 905) return
+                        else cleanedData.push(item)
                     })
                     setPokeData(cleanedData);
                     setuseAbleData(cleanedData)
@@ -44,19 +40,13 @@ function List(props) {
                     const cleanedData = []
                     res.results.forEach((item, index) => {
                         let i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-                        if (item.url === undefined) {
-                            return (console.log("return url undefined"));
-                        }
+                        if (item.url === undefined) return
+                        if (i > 905) return
+                        else cleanedData.push(item)
 
-                        if (i > 905) {
-                            return (console.log("return > 905"));
-                        } else {
-                            cleanedData.push(item)
-                        }
                     })
                     setPokeData(cleanedData);
                     setuseAbleData(cleanedData);
-                    console.log(cleanedData)
                 }
 
                 return () => {
@@ -68,22 +58,12 @@ function List(props) {
 
 
     useEffect(() => {
-        if (PokeData === undefined) {
-            return;
-        }
-        if (props.searchTerm === "") {
-            setuseAbleData(PokeData);
-        }
-        if (PokeData[0].pokemon?.name !== undefined && props.searchLink.includes("pokemon")) {
-            return;
-        }
-        // if (searchTerm === "reset") {
-        //     setSearchTerm("pokemon/?limit=905&offset=0.");
-        //     // setuseAbleData(PokeData);
-        //     return;
-        // }
+        if (PokeData === undefined) return;
 
-        // setSearchTerm(`pokemon/${searchTerm}`);
+        if (props.searchTerm === "") setuseAbleData(PokeData);
+
+        if (PokeData[0].pokemon?.name !== undefined && props.searchLink.includes("pokemon")) return;
+
         let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
             setuseAbleData(PokeData.filter((el, i) =>
@@ -105,13 +85,11 @@ function List(props) {
     }, [props.searchTerm, PokeData, props.searchLink]);
 
 
-    if (PokeData === undefined) {
-        return;
-    }
+    if (PokeData === undefined) return;
 
-    if (PokeData[0].pokemon?.name !== undefined && searchLink.includes("pokemon")) {
-        return;
-    }
+
+    if (PokeData[0].pokemon?.name !== undefined && searchLink.includes("pokemon")) return;
+
 
 
 
@@ -136,7 +114,7 @@ function List(props) {
                     }
                 }
                 return (
-                    <Link to={`/pokemon/${i}`} key={index} className='map_div'>
+                    <Link to={`/pokemon/${i}`} key={index} className={`map_div ${props.darkmode ? "darkM" : "LightM"}`}>
                         <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`} alt='POKEimg'></img>
                         <span className='ueber_num_Name'>
                             <p className='num_name'> {name.toUpperCase()} </p>
