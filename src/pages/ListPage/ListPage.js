@@ -1,17 +1,13 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import german from '../../German JSON.json';
 
 function List(props) {
-    // const [searchterm, setSearchTerm] = useState("?limit=500&offset=0.");
     const [PokeData, setPokeData] = useState();
     const [searchLink, setsearchLink] = useState(props.searchLink);
-    // const [searchTerm, setSearchTerm] = useState(props.searchTerm);
     const [searchLimit, setsearchLimit] = useState(50);
     const [useAbleData, setuseAbleData] = useState();
 
-    props.loading();
 
     useEffect(() => {
         setsearchLink(props.searchLink);
@@ -23,10 +19,7 @@ function List(props) {
             .then(res => res.json())
             .then((res) => {
                 if (props.searchLink.includes("type")) {
-                    // setPokeData(res.pokemon);
-                    // setuseAbleData(res.pokemon);
                     const cleanedData = []
-
                     res.pokemon.forEach((item, index) => {
                         let i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
                         if (i > 905) return
@@ -35,15 +28,12 @@ function List(props) {
                     setPokeData(cleanedData);
                     setuseAbleData(cleanedData)
                 } else if (props.searchLink.includes("pokemon")) {
-                    // setPokeData(res.results);
-                    // setuseAbleData(res.results);
                     const cleanedData = []
                     res.results.forEach((item, index) => {
                         let i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
                         if (item.url === undefined) return
                         if (i > 905) return
                         else cleanedData.push(item)
-
                     })
                     setPokeData(cleanedData);
                     setuseAbleData(cleanedData);
@@ -84,14 +74,9 @@ function List(props) {
 
     }, [props.searchTerm, PokeData, props.searchLink]);
 
-
     if (PokeData === undefined) return;
 
-
-    if (PokeData[0].pokemon?.name !== undefined && searchLink.includes("pokemon")) return;
-
-
-
+    if (PokeData[0].pokemon?.name !== undefined && (searchLink.includes("pokemon") || props.searchLink.includes("pokemon"))) return;
 
     return (
 

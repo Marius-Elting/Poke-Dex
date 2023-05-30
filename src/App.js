@@ -1,6 +1,5 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-
 import Header from './components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DetailPage from './pages/DetailPage/DetailPage';
@@ -15,11 +14,9 @@ function App() {
   const [DL, setDL] = useState("Light");
   const [burger, setBurger] = useState("Lpk");
   const [darkMode, setDarkmode] = useState(false);
-  const [loading, setLoading] = useState(false);
+
 
   function searchByFilter(filter = "pokemon/?limit=905&offset=0.", target) {
-    console.log("Filter triggered")
-    console.log(filter)
     let buttons = document.querySelectorAll("button");
 
     Array.from(buttons).forEach((but) => {
@@ -28,7 +25,6 @@ function App() {
     target.classList.add("selected");
     setlinkSearch(filter);
   }
-  console.log(linkSearch)
   function searchPokemon(searchTerm) {
     setSearchTerm(searchTerm);
   }
@@ -70,17 +66,13 @@ function App() {
       });
 
     }
-    setLoading(false);
-  }, [darkMode, loading]);
+
+  }, [darkMode]);
 
   const toggleTheme = () => {
     setDarkmode(prev => !prev);
   };
 
-  const toggleLoad = () => {
-    // setLoading(true);
-    console.log("loading toggled")
-  };
 
   return (
     <div className="App">
@@ -89,7 +81,7 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} darkmode={darkMode} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage darkmode={darkMode} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
           <Route path="/:pokemon/:id" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>
