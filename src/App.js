@@ -13,7 +13,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [Lang, setLang] = useState("English");
   const [DL, setDL] = useState("Light");
-  const [Burger, setBurger] = useState("Lpk");
+  const [burger, setBurger] = useState("Lpk");
   const [el, setel] = useState(document.getElementsByClassName('map_div'));
   const [darkMode, setDarkmode] = useState(false);
   const [laoding, setLoading] = useState(false);
@@ -47,7 +47,7 @@ function App() {
     }
   }
 
-  useEffect((load) => {
+  useEffect(() => {
     if (darkMode) {
       document.body.className = "dark";
       Array.from(el).forEach((element) => {
@@ -86,8 +86,8 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<><Header setDarkmode={toggleTheme} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
-          <Route path="/:pokemon/:id" element={<><Header setDarkmode={toggleTheme} burgerimg={Burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
+          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage loading={toggleLoad} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/:pokemon/:id" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>
       </Router>

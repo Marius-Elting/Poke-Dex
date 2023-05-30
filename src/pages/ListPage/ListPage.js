@@ -23,18 +23,47 @@ function List(props) {
             .then(res => res.json())
             .then((res) => {
                 if (props.searchLink.includes("type")) {
-                    setPokeData(res.pokemon);
-                    setuseAbleData(res.pokemon);
+                    // setPokeData(res.pokemon);
+                    // setuseAbleData(res.pokemon);
+                    const cleanedData = []
+
+                    res.pokemon.forEach((item, index) => {
+                        let i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
+
+                        if (i > 905) {
+                            return (console.log("return > 905"));
+                        } else {
+                            cleanedData.push(item)
+                        }
+                    })
+                    setPokeData(cleanedData);
+                    setuseAbleData(cleanedData)
                 } else if (props.searchLink.includes("pokemon")) {
-                    setPokeData(res.results);
-                    setuseAbleData(res.results);
+                    // setPokeData(res.results);
+                    // setuseAbleData(res.results);
+                    const cleanedData = []
+                    res.results.forEach((item, index) => {
+                        let i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
+                        if (item.url === undefined) {
+                            return (console.log("return url undefined"));
+                        }
+
+                        if (i > 905) {
+                            return (console.log("return > 905"));
+                        } else {
+                            cleanedData.push(item)
+                        }
+                    })
+                    setPokeData(cleanedData);
+                    setuseAbleData(cleanedData);
+                    console.log(cleanedData)
                 }
 
                 return () => {
                     controller.abort();
                 };
             });
-    }, [props.searchLink, searchLink,]);
+    }, [props.searchLink, searchLink]);
 
 
 
@@ -55,7 +84,6 @@ function List(props) {
         // }
 
         // setSearchTerm(`pokemon/${searchTerm}`);
-        console.log("test")
         let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
             setuseAbleData(PokeData.filter((el, i) =>
@@ -76,8 +104,7 @@ function List(props) {
 
     }, [props.searchTerm, PokeData, props.searchLink]);
 
-    console.log(useAbleData)
-    console.log(german)
+
     if (PokeData === undefined) {
         return;
     }
@@ -86,12 +113,15 @@ function List(props) {
         return;
     }
 
+
+
     return (
 
         <div className="main_Div">
             {useAbleData?.slice(0, searchLimit).map((item, index) => {
                 let name;
                 let i;
+
                 if (props.searchLink.includes("type")) {
                     name = item.pokemon.name;
                     i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
@@ -99,17 +129,11 @@ function List(props) {
                         name = german[i - 1].name;
                     }
                 } else if (props.searchLink.includes("pokemon")) {
-                    if (item.url === undefined) {
-                        return (console.log("return"));
-                    }
                     name = item.name;
                     i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
                     if (i <= 905 && props.language === "German") {
                         name = german[i - 1].name;
                     }
-                }
-                if (i > 905) {
-                    return (console.log("return"));
                 }
                 return (
                     <Link to={`/pokemon/${i}`} key={index} className='map_div'>
