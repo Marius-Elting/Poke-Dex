@@ -7,7 +7,7 @@ function List(props) {
     const [searchLink, setsearchLink] = useState(props.searchLink);
     const [searchLimit, setsearchLimit] = useState(50);
     const [useAbleData, setuseAbleData] = useState();
-
+    const reggex = /(mon|on|n|)[/]/g
 
     useEffect(() => {
         setsearchLink(props.searchLink);
@@ -21,8 +21,8 @@ function List(props) {
                 if (props.searchLink.includes("type")) {
                     const cleanedData = []
                     res.pokemon.forEach((item, index) => {
-                        let i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-                        if (i > 905) return
+                        item.i = item.pokemon.url.slice(-6, -2).replace(reggex, "");
+                        if (item.i > 905) return
                         else cleanedData.push(item)
                     })
                     setPokeData(cleanedData);
@@ -30,9 +30,8 @@ function List(props) {
                 } else if (props.searchLink.includes("pokemon")) {
                     const cleanedData = []
                     res.results.forEach((item, index) => {
-                        let i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-                        if (item.url === undefined) return
-                        if (i > 905) return
+                        item.i = item.url.slice(-6, -1).replace(reggex, "")
+                        if (item.url === undefined || item.i > 905) return
                         else cleanedData.push(item)
                     })
                     setPokeData(cleanedData);
@@ -59,7 +58,7 @@ function List(props) {
             setuseAbleData(PokeData.filter((el, i) =>
                 el.pokemon.name.slice(0, length).toLowerCase() ===
                 (props.searchTerm).toLowerCase().replaceAll(" ", "-") ||
-                german[Number(el.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "")) - 1]?.name.slice(0, length).toLowerCase() ===
+                german[el.i - 1]?.name.slice(0, length).toLowerCase() ===
                 (props.searchTerm).toLowerCase().replaceAll(" ", "-")
 
             ));
@@ -74,36 +73,34 @@ function List(props) {
 
     }, [props.searchTerm, PokeData, props.searchLink]);
 
-    if (PokeData === undefined) return;
+    // if () return;
 
-    if (PokeData[0].pokemon?.name !== undefined && (searchLink.includes("pokemon") || props.searchLink.includes("pokemon"))) return;
-
+    if (PokeData === undefined || (PokeData[0].pokemon?.name !== undefined && (searchLink.includes("pokemon") || props.searchLink.includes("pokemon")))) return;
+    console.log(props.language)
     return (
 
         <div className="main_Div">
             {useAbleData?.slice(0, searchLimit).map((item, index) => {
                 let name;
-                let i;
-
+                console.log(item)
                 if (props.searchLink.includes("type")) {
                     name = item.pokemon.name;
-                    i = item.pokemon.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-                    if (i <= 905 && props.language === "German") {
-                        name = german[i - 1].name;
+                    if (item.i <= 905 && props.language === "German") {
+                        name = german[item.i - 1].name;
                     }
                 } else if (props.searchLink.includes("pokemon")) {
-                    name = item.name;
-                    i = item.url.slice(-6, -1).replace("/", "").replace("n", "").replace("o", "").replace("m", "");
-                    if (i <= 905 && props.language === "German") {
-                        name = german[i - 1].name;
+
+                    name = item.name
+                    if (item.i <= 905 && props.language === "German") {
+                        name = german[item.i - 1].name;
                     }
                 }
                 return (
-                    <Link to={`/pokemon/${i}`} key={index} className={`map_div ${props.darkmode ? "darkM" : "LightM"}`}>
-                        <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`} alt='POKEimg'></img>
+                    <Link to={`/pokemon/${item.i}`} key={index} className={`map_div ${props.darkmode ? "darkM" : "LightM"}`}>
+                        <img className='PokeImg' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.i}.png`} alt='POKEimg'></img>
                         <span className='ueber_num_Name'>
                             <p className='num_name'> {name.toUpperCase()} </p>
-                            <p className='num_name'> {("000" + (i)).slice(-3) + "#"} </p>
+                            <p className='num_name'> {("000" + (item.i)).slice(-3) + "#"} </p>
                         </span>
                     </Link>
                 );
