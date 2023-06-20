@@ -81,7 +81,7 @@ function App() {
       <List /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage darkmode={darkMode} language={Lang} searchTerm={searchTerm} searchLink={linkSearch} /></>} />
+          <Route path="/" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} setLanguage={selectLang} filter={searchByFilter} search={searchPokemon} resetButton={reset} /> <ListPage darkmode={darkMode} language={Lang} searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchLink={linkSearch} /></>} />
           <Route path="/:pokemon/:id" element={<><Header lang={Lang} setDarkmode={toggleTheme} burgerimg={burger} dlimg={DL} setLanguage={selectLang} search={searchPokemon} resetButton={reset} /><DetailPage language={Lang} /></>} />
           <Route path="/filter" element={<Filter filter={searchByFilter} />} />
         </Routes>
