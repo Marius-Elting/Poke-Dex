@@ -15,16 +15,18 @@ function List(props) {
 
     useEffect(() => {
         const controller = new AbortController();
+        props.setSearchTerm("")
         fetch(`https://pokeapi.co/api/v2/${searchLink}`, { signal: controller.signal })
             .then(res => res.json())
             .then((res) => {
                 if (props.searchLink.includes("type")) {
                     const cleanedData = []
                     res.pokemon.forEach((item, index) => {
-                        item.i = item.pokemon.url.slice(-6, -2).replace(reggex, "");
+                        item.i = item.pokemon.url.slice(-6, -1).replace(reggex, "");
                         if (item.i > 905) return
                         else cleanedData.push(item)
                     })
+                    console.log(cleanedData)
                     setPokeData(cleanedData);
                     setuseAbleData(cleanedData)
                 } else if (props.searchLink.includes("pokemon")) {
@@ -42,7 +44,7 @@ function List(props) {
                     controller.abort();
                 };
             });
-    }, [props.searchLink, searchLink]);
+    }, [props.searchLink, searchLink,]);
 
 
 
@@ -52,7 +54,6 @@ function List(props) {
         if (props.searchTerm === "") setuseAbleData(PokeData);
 
         if (PokeData[0].pokemon?.name !== undefined && props.searchLink.includes("pokemon")) return;
-
         let length = (props.searchTerm).length;
         if (props.searchLink.includes("type")) {
             setuseAbleData(PokeData.filter((el, i) =>
@@ -73,6 +74,7 @@ function List(props) {
 
     }, [props.searchTerm, PokeData, props.searchLink]);
 
+
     // if () return;
 
     if (PokeData === undefined || (PokeData[0].pokemon?.name !== undefined && (searchLink.includes("pokemon") || props.searchLink.includes("pokemon")))) return;
@@ -82,7 +84,6 @@ function List(props) {
         <div className="main_Div">
             {useAbleData?.slice(0, searchLimit).map((item, index) => {
                 let name;
-                console.log(item)
                 if (props.searchLink.includes("type")) {
                     name = item.pokemon.name;
                     if (item.i <= 905 && props.language === "German") {
